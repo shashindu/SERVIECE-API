@@ -25,10 +25,9 @@ public class FileDownloadController {
 
 	    @Autowired
 	    private ServletContext servletContext;
-
-	    
+ 
 	    @RequestMapping("/bill")
-	    public ResponseEntity<InputStreamResource> downloadFile1()throws IOException {
+	    public ResponseEntity<InputStreamResource> downloadFile()throws IOException {
 	 
 	        MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, DEFAULT_FILE_NAME);
 	        Resource resource = new ClassPathResource("Sample Bill.pdf");
@@ -39,7 +38,7 @@ public class FileDownloadController {
 	        return ResponseEntity.ok()
 	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
 	                .contentType(mediaType)
-	                .contentLength(file.length()) //
+	                .contentLength(file.length()) 
 	                .body(inputResource);
 	    }
 }
